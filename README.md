@@ -7,7 +7,7 @@ Start med å laste ned blender og Github desktop.
 
 Når du har blender instalert kan du gå inn i github desktop og clone repostoriet i en passende mappe.
 
-Finn plyground (under Starter Assets FP nå men vil endre plass) og kjør Unity
+Finn Playground under Assets -> Scenes og kjør Unity
 
 Ønsker du å gjøre endringer i prosjektet?
 
