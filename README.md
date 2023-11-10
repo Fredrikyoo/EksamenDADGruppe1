@@ -18,4 +18,6 @@ Hvis du ikke ser alt du burde se må du finne Windows øverst i editoren, velge 
 Built into URP. Huk av på alle boksene, initaliser og converter.
 
 Om du fortsatt sliter med å se alle Komponentene prøv,
-velg komponenten, øverst i høyre på editoren skal det være tre prikker, velg Reset 
+velg komponenten, øverst i høyre på editoren skal det være tre prikker, velg Reset.
+
+Nå burde programmet være riktig.
