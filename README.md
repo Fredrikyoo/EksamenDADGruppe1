@@ -13,7 +13,7 @@ Finn plyground (under Starter Assets FP nå men vil endre plass) og kjør Unity
 
 Legg prosjektet til i Unity Hub, under Assets vil du finne en mappe som heter Scenes og under der igjen, en Scene som heter Playgorund
 
-Hvis du ikke ser alt du burde se må du finne Windows øverst i editoren, velge Rendering -> Render Pipeline Converter og bytte den nåværnde settingen til Built into URP.
+Hvis du ikke ser alt du burde se må du finne Windows øverst i editoren, velge Rendering -> Render Pipeline Converter og endre den nåværnde settingen til Built into URP.
 
 Huk av på alle boksene, initaliser og converter.
 
