@@ -6,14 +6,19 @@ using TMPro;
 public class PopupDatablad : MonoBehaviour
 {
     public GameObject Popup;
-    public GameObject GameManager;
+    public GameObject GameManagement;
 
     void Start(){
         Popup.SetActive(false);
-        //PopupAllowed = GameManager.GetComponent<>(GameManager);
     }
     void OnTriggerEnter(Collider other){
-        Popup.SetActive(true);
+        bool PopupAllowed = GameManagement.GetComponent<GameManager>().Popups;
+        //henter verdi fra gamemanager og sjekker om Popups er aktive eller ikke
+        if(PopupAllowed == true){
+            Popup.SetActive(true);
+        } else {
+            Debug.Log("Popup is diasbled");
+        }
     }
     void OnTriggerExit(Collider other){
         Popup.SetActive(false);
