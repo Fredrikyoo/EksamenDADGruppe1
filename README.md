@@ -1,5 +1,4 @@
 # EksamenDADGruppe1
-# Husk å endre!
 
 Problemer med å starte unity prosjektet?
 
