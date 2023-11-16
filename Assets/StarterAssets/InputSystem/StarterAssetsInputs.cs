@@ -19,6 +19,7 @@ namespace StarterAssets
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
+		public GameObject GameManagement;
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -75,6 +76,15 @@ namespace StarterAssets
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
+
+		void Update()
+		{
+			bool PauseActive = GameManagement.GetComponent<GameManager>().PauseScreenActive;
+			if(PauseActive == true){
+				cursorLocked = false;
+			} else{
+				cursorLocked = true;
+			}
+		}
 	}
-	
 }
