@@ -5,7 +5,7 @@ public class CrossHairScript : MonoBehaviour
     public GameObject GameManagement;
     public GameObject CrossHair;
     // Start is called before the first frame update
-    void Start()
+    void FixedUpdate()
     {
          bool CrossHairActive = GameManagement.GetComponent<GameManager>().CrossHair;
          //sjekker crosshair er aktive i gamemanager
