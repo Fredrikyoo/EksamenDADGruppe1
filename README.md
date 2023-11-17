@@ -6,7 +6,7 @@ Start med å laste ned blender og Github desktop.
 
 Når du har blender instalert kan du gå inn i github desktop og clone repostoriet i en passende mappe.
 
-Finn Playground under Assets -> Scenes og kjør Unity
+Finn EksamenDADGruppe1 under Eksamenbuild og kjør Unity
 
 Ønsker du å gjøre endringer i prosjektet?
 
