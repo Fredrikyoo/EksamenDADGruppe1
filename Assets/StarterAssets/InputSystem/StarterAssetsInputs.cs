@@ -79,11 +79,18 @@ namespace StarterAssets
 
 		void Update()
 		{
+			/*if (Input.GetKeyDown(KeyCode.P))
+			{
+				cursorLocked = false;
+				SetCursorState(cursorLocked);
+			}*/
 			bool PauseActive = GameManagement.GetComponent<GameManager>().PauseScreenActive;
 			if(PauseActive == true){
 				cursorLocked = false;
+				SetCursorState(cursorLocked);
 			} else{
 				cursorLocked = true;
+				SetCursorState(cursorLocked);
 			}
 		}
 	}
