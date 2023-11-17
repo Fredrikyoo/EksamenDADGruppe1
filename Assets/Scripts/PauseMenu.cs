@@ -5,12 +5,21 @@ public class PauseMenu : MonoBehaviour
 {
     public void ResumeSim(){
         FindObjectOfType<GameManager>().ReturnToSim();
-        //FindObjectOfType<StarterAssetsInputs>().ReturnFromPause();
-        Debug.Log("resume");
     }
     public void OptionsSim(){
-        SceneManager.LoadScene("Settings");
-        Debug.Log("options");
+        FindObjectOfType<GameManager>().GoToOptions();
+    }
+    public void ReturnFromOptionsSim(){
+        FindObjectOfType<GameManager>().ReturnOptions();
+    }
+    public void DataBladSetting(){
+        FindObjectOfType<GameManager>().DataBladEnable();
+    }
+    public void CrossHairSetting(){
+        FindObjectOfType<GameManager>().CrossHairEnable();
+    }
+    public void BackToStartPage(){
+        FindObjectOfType<StartPage>().ReturnOptionsSim();
     }
     public void ExitSim(){
         SceneManager.LoadScene("StartPage");

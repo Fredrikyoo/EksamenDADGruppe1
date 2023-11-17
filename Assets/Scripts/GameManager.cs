@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -8,26 +11,66 @@ public class GameManager : MonoBehaviour
     public bool PauseScreenActive;
     bool RememberCrossHair;
     public GameObject PauseScreen;
+    public GameObject OptionsScreen;
 
+    public GameObject DataBladButton;
+    public GameObject CrossHairButton;
+    //public GameObject DataBladButton;
+    //public GameObject CrossHairButton;
+
+    TextMeshProUGUI DataBladText;
+    TextMeshProUGUI CrossHairText; 
+    
     void Start()
     {
         PauseScreenActive = false;
         PauseScreen.SetActive(false);
+        OptionsScreen.SetActive(false);
+
+        DataBladText = DataBladButton.GetComponent<TextMeshProUGUI>();
+        CrossHairText = CrossHairButton.GetComponent<TextMeshProUGUI>();
+
+        RememberCrossHair = CrossHair;
+        UpdateSettings();
     }
     public void DataBladEnable()
     {
         Popups = !Popups;
+        UpdateSettings();
     }
     public void CrossHairEnable()
     {
-        CrossHair = !CrossHair;
+        RememberCrossHair = !RememberCrossHair;
+        UpdateSettings();
     }
     public void ReturnToSim()
     {
         PauseScreen.SetActive(false);
         PauseScreenActive = false;
         CrossHair = RememberCrossHair;
-        Debug.Log("test");
+    }
+    public void GoToOptions()
+    {
+        PauseScreen.SetActive(false);
+        OptionsScreen.SetActive(true);
+    }
+    public void ReturnOptions()
+    {
+        OptionsScreen.SetActive(false);
+        PauseScreen.SetActive(true);
+    }
+    public void UpdateSettings()
+    {
+        if(Popups == true){
+            DataBladText.text = "On";
+        } else {
+            DataBladText.text = "Off";
+        }
+        if(RememberCrossHair == true){
+            CrossHairText.text = "On";
+        } else {
+            CrossHairText.text = "Off";
+        }
     }
 
     void Update()
@@ -42,9 +85,15 @@ public class GameManager : MonoBehaviour
                 PauseScreen.SetActive(true);
             }
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            DataBladEnable();
+        }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            CrossHair = !CrossHair;
+            CrossHairEnable();
         }
+        StartPage.CrossHairActive = CrossHair;
+        StartPage.DataBladActive = Popups;
     }
 }
