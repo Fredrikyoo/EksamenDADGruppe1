@@ -145,8 +145,12 @@ public class GameManager : MonoBehaviour
         }
         if(RememberCrossHair == true){
             CrossHairText.text = "On";
+            if(PauseScreenActive == false){
+                CrossHairGameObject.SetActive(true);
+            }
         } else {
             CrossHairText.text = "Off";
+            CrossHairGameObject.SetActive(false);
         }
         if(Extras == true){
             ExtrasText.text = "On";
