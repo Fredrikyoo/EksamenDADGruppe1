@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public GameObject LiveDataButton;
     public GameObject ExtrasButton;
 
+    public GameObject CrossHairGameObject;
+    public GameObject ExtrasGameObject;
+
     TextMeshProUGUI DataBladText;
     TextMeshProUGUI CrossHairText; 
     TextMeshProUGUI LiveDataText;
@@ -107,6 +110,7 @@ public class GameManager : MonoBehaviour
         Extras = !Extras;
         Debug.Log("ExtrasEnable");
         UpdateSettings();
+        //FindObjectOfType<ExtrasScript>().UpdateExtras();
     }
 
     public void ReturnToSim()
@@ -114,6 +118,11 @@ public class GameManager : MonoBehaviour
         PauseScreen.SetActive(false);
         PauseScreenActive = false;
         CrossHair = RememberCrossHair;
+        if(CrossHair == true){
+            CrossHairGameObject.SetActive(true);
+        } else {
+            CrossHairGameObject.SetActive(false);
+        }
     }
     public void GoToOptions()
     {
@@ -141,8 +150,10 @@ public class GameManager : MonoBehaviour
         }
         if(Extras == true){
             ExtrasText.text = "On";
+            ExtrasGameObject.SetActive(true);
         } else {
             ExtrasText.text = "Off";
+            ExtrasGameObject.SetActive(false);
         }
         if(LiveData == true){
             LiveDataText.text = "On";
