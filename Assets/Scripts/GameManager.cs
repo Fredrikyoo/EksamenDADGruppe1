@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         LiveDataText = LiveDataButton.GetComponent<TextMeshProUGUI>();
         ExtrasText = ExtrasButton.GetComponent<TextMeshProUGUI>();
 
+        Popups = SettingsStateController.DataBladSettingController;
+        LiveData = SettingsStateController.LiveDataSettingController;
+        CrossHair = SettingsStateController.CrossHairSettingController;
+        Extras = SettingsStateController.ExtrasSettingController;
+
         RememberCrossHair = CrossHair;
         UpdateSettings();
     }
@@ -51,6 +56,16 @@ public class GameManager : MonoBehaviour
                 PauseScreen.SetActive(true);
             }
         }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            RememberCrossHair = CrossHair;
+            if(PauseScreenActive == false)
+            {
+                PauseScreenActive = true;
+                CrossHair = false;
+                OptionsScreen.SetActive(true);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.I))
         {
             DataBladEnable();
@@ -63,7 +78,7 @@ public class GameManager : MonoBehaviour
         {
             LiveDataEnable();
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             ExtrasEnable();
         }

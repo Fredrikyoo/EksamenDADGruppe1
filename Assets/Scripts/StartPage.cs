@@ -7,6 +7,7 @@ public class StartPage : MonoBehaviour
 {
     public GameObject StartScreen;
     public GameObject OptionsScreen;
+    public GameObject InfoScreen;
 
     public bool CrossHairActive;
     public bool DataBladActive;
@@ -26,6 +27,7 @@ public class StartPage : MonoBehaviour
     void Start(){
         StartScreen.SetActive(true);
         OptionsScreen.SetActive(false);
+        InfoScreen.SetActive(false);
 
         DataBladText = DataBladButton.GetComponent<TextMeshProUGUI>();
         CrossHairText = CrossHairButton.GetComponent<TextMeshProUGUI>();
@@ -36,6 +38,10 @@ public class StartPage : MonoBehaviour
     }
 
     public void StartSim(){
+        SettingsStateController.DataBladSettingController = DataBladActive;
+        SettingsStateController.LiveDataSettingController = LiveDataActive;
+        SettingsStateController.CrossHairSettingController = CrossHairActive;
+        SettingsStateController.ExtrasSettingController = ExtrasActive;
         SceneManager.LoadScene("Playground");
     }
     public void OptionsSim(){
@@ -45,6 +51,14 @@ public class StartPage : MonoBehaviour
     public void ReturnOptionsSim(){
         StartScreen.SetActive(true);
         OptionsScreen.SetActive(false);
+    }
+    public void InfoSim(){
+        StartScreen.SetActive(false);
+        InfoScreen.SetActive(true);
+    }
+    public void ReturnInfoSim(){
+        StartScreen.SetActive(true);
+        InfoScreen.SetActive(false);
     }
     public void ExitSim(){
         Debug.Log("supposed to exit game");
