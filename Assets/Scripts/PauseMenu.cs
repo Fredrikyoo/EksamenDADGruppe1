@@ -27,9 +27,9 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<GameManager>().CrossHairEnable();
     }
     public void LiveDataSetting(){
-        FindObjectOfType<GameManager>().DataBladEnable();
+        FindObjectOfType<GameManager>().LiveDataEnable();
     }
     public void ExtrasSetting(){
-        FindObjectOfType<GameManager>().CrossHairEnable();
+        FindObjectOfType<GameManager>().ExtrasEnable();
     }
 }

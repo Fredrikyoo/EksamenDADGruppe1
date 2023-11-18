@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
 
         DataBladText = DataBladButton.GetComponent<TextMeshProUGUI>();
         CrossHairText = CrossHairButton.GetComponent<TextMeshProUGUI>();
-        LiveDataText = DataBladButton.GetComponent<TextMeshProUGUI>();
-        ExtrasText = CrossHairButton.GetComponent<TextMeshProUGUI>();
+        LiveDataText = LiveDataButton.GetComponent<TextMeshProUGUI>();
+        ExtrasText = ExtrasButton.GetComponent<TextMeshProUGUI>();
 
         RememberCrossHair = CrossHair;
         UpdateSettings();
@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
         OptionsScreen.SetActive(false);
         PauseScreen.SetActive(true);
     }
+
+
     public void UpdateSettings()
     {
         if(Popups == true){
