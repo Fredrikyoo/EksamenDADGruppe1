@@ -8589,11 +8589,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Popups: 1
   CrossHair: 1
+  LiveData: 0
+  Extras: 0
   PauseScreenActive: 0
   PauseScreen: {fileID: 125866678}
   OptionsScreen: {fileID: 91873629}
   DataBladButton: {fileID: 235936850}
   CrossHairButton: {fileID: 1944393492}
+  LiveDataButton: {fileID: 123622554}
+  ExtrasButton: {fileID: 455786654}
 --- !u!4 &416074424
 Transform:
   m_ObjectHideFlags: 0
@@ -15817,7 +15821,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 766953407}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 209000296}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: ExtrasSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &766953407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17427,16 +17443,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'or press ''i''
+  m_text: 'or press ''I''
 
 
-    or press _
+    or press ''L''
 
 
-    or press ''o''
+    or press ''K''
 
 
-    or press _'
+    or press
+    ''O'''
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -62856,7 +62873,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2098816620}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 209000296}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: LiveDataSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2098816620
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public bool Popups;
     public bool CrossHair;
+    public bool LiveData;
+    public bool Extras;
     public bool PauseScreenActive;
     bool RememberCrossHair;
     public GameObject PauseScreen;
@@ -15,11 +17,13 @@ public class GameManager : MonoBehaviour
 
     public GameObject DataBladButton;
     public GameObject CrossHairButton;
-    //public GameObject DataBladButton;
-    //public GameObject CrossHairButton;
+    public GameObject LiveDataButton;
+    public GameObject ExtrasButton;
 
     TextMeshProUGUI DataBladText;
     TextMeshProUGUI CrossHairText; 
+    TextMeshProUGUI LiveDataText;
+    TextMeshProUGUI ExtrasText; 
     
     void Start()
     {
@@ -29,20 +33,67 @@ public class GameManager : MonoBehaviour
 
         DataBladText = DataBladButton.GetComponent<TextMeshProUGUI>();
         CrossHairText = CrossHairButton.GetComponent<TextMeshProUGUI>();
+        LiveDataText = DataBladButton.GetComponent<TextMeshProUGUI>();
+        ExtrasText = CrossHairButton.GetComponent<TextMeshProUGUI>();
 
         RememberCrossHair = CrossHair;
         UpdateSettings();
     }
+    void Update()
+    {  
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            RememberCrossHair = CrossHair;
+            if(PauseScreenActive == false)
+            {
+                PauseScreenActive = true;
+                CrossHair = false;
+                PauseScreen.SetActive(true);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            DataBladEnable();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            CrossHairEnable();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LiveDataEnable();
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ExtrasEnable();
+        }
+    }
+
     public void DataBladEnable()
     {
         Popups = !Popups;
+        Debug.Log("DatabaldEnable");
         UpdateSettings();
     }
     public void CrossHairEnable()
     {
         RememberCrossHair = !RememberCrossHair;
+        Debug.Log("CrossHairEnable");
         UpdateSettings();
     }
+    public void LiveDataEnable()
+    {
+        LiveData = !LiveData;
+        Debug.Log("LiveDataEnable");
+        UpdateSettings();
+    }
+    public void ExtrasEnable()
+    {
+        Extras = !Extras;
+        Debug.Log("ExtrasEnable");
+        UpdateSettings();
+    }
+
     public void ReturnToSim()
     {
         PauseScreen.SetActive(false);
@@ -71,29 +122,15 @@ public class GameManager : MonoBehaviour
         } else {
             CrossHairText.text = "Off";
         }
-    }
-
-    void Update()
-    {  
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            RememberCrossHair = CrossHair;
-            if(PauseScreenActive == false)
-            {
-                PauseScreenActive = true;
-                CrossHair = false;
-                PauseScreen.SetActive(true);
-            }
+        if(Extras == true){
+            ExtrasText.text = "On";
+        } else {
+            ExtrasText.text = "Off";
         }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            DataBladEnable();
+        if(LiveData == true){
+            LiveDataText.text = "On";
+        } else {
+            LiveDataText.text = "Off";
         }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            CrossHairEnable();
-        }
-        StartPage.CrossHairActive = CrossHair;
-        StartPage.DataBladActive = Popups;
     }
 }
