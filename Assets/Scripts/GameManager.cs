@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public bool Popups;
     public bool CrossHair;
-    public bool LiveData;
+    public bool LiveDatas;
     public bool Extras;
     public bool PauseScreenActive;
     bool RememberCrossHair;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         ExtrasText = ExtrasButton.GetComponent<TextMeshProUGUI>();
 
         Popups = SettingsStateController.DataBladSettingController;
-        LiveData = SettingsStateController.LiveDataSettingController;
+        LiveDatas = SettingsStateController.LiveDataSettingController;
         CrossHair = SettingsStateController.CrossHairSettingController;
         Extras = SettingsStateController.ExtrasSettingController;
 
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     }
     public void LiveDataEnable()
     {
-        LiveData = !LiveData;
+        LiveDatas = !LiveDatas;
         Debug.Log("LiveDataEnable");
         UpdateSettings();
     }
@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
             ExtrasText.text = "Off";
             ExtrasGameObject.SetActive(false);
         }
-        if(LiveData == true){
+        if(LiveDatas == true){
             LiveDataText.text = "On";
         } else {
             LiveDataText.text = "Off";
