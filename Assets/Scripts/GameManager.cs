@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         LiveDataText = LiveDataButton.GetComponent<TextMeshProUGUI>();
         ExtrasText = ExtrasButton.GetComponent<TextMeshProUGUI>();
 
+        //henter verdier fra startpage gjennom controller
         Popups = SettingsStateController.DataBladSettingController;
         LiveDatas = SettingsStateController.LiveDataSettingController;
         CrossHair = SettingsStateController.CrossHairSettingController;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {  
+        //lytter på keyboard
         if (Input.GetKeyDown(KeyCode.P))
         {
             RememberCrossHair = CrossHair;
@@ -88,10 +90,9 @@ public class GameManager : MonoBehaviour
         {
             ExtrasEnable();
         }
-        Debug.Log("crosshair "+ CrossHair);
-        Debug.Log("remember crosshair "+ RememberCrossHair);
     }
 
+    //endrer verdier of oppdater menyen
     public void DataBladEnable()
     {
         Popups = !Popups;
@@ -144,7 +145,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void UpdateSettings()
+    void UpdateSettings()
     {
         if(Popups == true){
             DataBladText.text = "On";

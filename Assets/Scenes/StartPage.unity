@@ -481,7 +481,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1783498672}
         m_TargetAssemblyTypeName: StartPage, Assembly-CSharp
-        m_MethodName: ReturnInfoSim
+        m_MethodName: MainSim
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1783,7 +1783,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1783498672}
         m_TargetAssemblyTypeName: StartPage, Assembly-CSharp
-        m_MethodName: ReturnOptionsSim
+        m_MethodName: MainSim
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3314,10 +3314,6 @@ MonoBehaviour:
   StartScreen: {fileID: 1635784619}
   OptionsScreen: {fileID: 865265641}
   InfoScreen: {fileID: 1307442617}
-  CrossHairActive: 1
-  DataBladActive: 0
-  ExtrasActive: 1
-  LiveDataActive: 0
   DataBladButton: {fileID: 43695622}
   CrossHairButton: {fileID: 845447526}
   LiveDataButton: {fileID: 147685225}

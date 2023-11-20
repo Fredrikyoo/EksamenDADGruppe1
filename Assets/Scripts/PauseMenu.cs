@@ -13,7 +13,7 @@ public class PauseMenu : MonoBehaviour
         FindObjectOfType<GameManager>().ReturnOptions();
     }
     public void BackToStartPage(){
-        FindObjectOfType<StartPage>().ReturnOptionsSim();
+        FindObjectOfType<StartPage>().MainSim();
     }
     public void ExitSim(){
         SceneManager.LoadScene("StartPage");

@@ -18,7 +18,7 @@ public class PopupDatablad : MonoBehaviour
         bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;
 
         if(PopupAllowed == true && LiveDataAllowed == true){
-            Debug.Log("Unique Case");
+            //putting two pages beside eachother
             LiveData.SetActive(true);
             Popup.SetActive(true);
 
@@ -35,25 +35,12 @@ public class PopupDatablad : MonoBehaviour
     void OnTriggerExit(Collider other){
         Popup.SetActive(false);
         LiveData.SetActive(false);
-        MoveObjectBack(Popup, new Vector3(0, 0, 0));
-        MoveObjectBack(LiveData, new Vector3(0, 0, 0));
+        MoveObject(Popup, new Vector3(0, 0, 0));
+        MoveObject(LiveData, new Vector3(0, 0, 0));
     }
     void MoveObject(GameObject obj, Vector3 offset)
     {
         RectTransform rectTransform = obj.GetComponent<RectTransform>();
-        if (rectTransform != null)
-        {
-            Debug.Log("Before Move - " + obj.name + " position: " + rectTransform.anchoredPosition3D);
-            rectTransform.anchoredPosition3D += offset;
-            Debug.Log("After Move - " + obj.name + " position: " + rectTransform.anchoredPosition3D);
-        }
-    }
-    void MoveObjectBack(GameObject obj, Vector3 offset)
-    {
-        RectTransform rectTransform = obj.GetComponent<RectTransform>();
-        if (rectTransform != null)
-        {
-            rectTransform.anchoredPosition3D = offset;
-        }
+        rectTransform.anchoredPosition3D = offset;
     }
 }
