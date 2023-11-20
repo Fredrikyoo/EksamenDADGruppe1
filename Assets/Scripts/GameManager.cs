@@ -52,9 +52,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             RememberCrossHair = CrossHair;
+
             if(PauseScreenActive == false)
             {
                 PauseScreenActive = true;
+                UpdateSettings();
                 CrossHair = false;
                 PauseScreen.SetActive(true);
             }
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
             if(PauseScreenActive == false)
             {
                 PauseScreenActive = true;
+                UpdateSettings();
                 CrossHair = false;
                 OptionsScreen.SetActive(true);
             }
@@ -85,6 +88,8 @@ public class GameManager : MonoBehaviour
         {
             ExtrasEnable();
         }
+        Debug.Log("crosshair "+ CrossHair);
+        Debug.Log("remember crosshair "+ RememberCrossHair);
     }
 
     public void DataBladEnable()
@@ -95,7 +100,11 @@ public class GameManager : MonoBehaviour
     }
     public void CrossHairEnable()
     {
-        RememberCrossHair = !RememberCrossHair;
+        if(PauseScreenActive == true){
+            RememberCrossHair = !RememberCrossHair;
+        } else {
+            CrossHair = !CrossHair;
+        }
         Debug.Log("CrossHairEnable");
         UpdateSettings();
     }
@@ -110,7 +119,6 @@ public class GameManager : MonoBehaviour
         Extras = !Extras;
         Debug.Log("ExtrasEnable");
         UpdateSettings();
-        //FindObjectOfType<ExtrasScript>().UpdateExtras();
     }
 
     public void ReturnToSim()
@@ -143,14 +151,19 @@ public class GameManager : MonoBehaviour
         } else {
             DataBladText.text = "Off";
         }
-        if(RememberCrossHair == true){
-            CrossHairText.text = "On";
-            if(PauseScreenActive == false){
-                CrossHairGameObject.SetActive(true);
+        if(PauseScreenActive == true){
+            if(RememberCrossHair == true){
+                CrossHairText.text = "On";
+            } else {
+                CrossHairText.text = "Off";
             }
-        } else {
-            CrossHairText.text = "Off";
             CrossHairGameObject.SetActive(false);
+        } else {
+            if(CrossHair == true){
+                CrossHairGameObject.SetActive(true);
+            } else {
+                CrossHairGameObject.SetActive(false);
+            }
         }
         if(Extras == true){
             ExtrasText.text = "On";
