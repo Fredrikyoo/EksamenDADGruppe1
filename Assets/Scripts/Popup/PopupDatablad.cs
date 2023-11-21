@@ -7,6 +7,7 @@ public class PopupDatablad : MonoBehaviour
 {
     public GameObject Popup;
     public GameObject LiveData;
+    public GameObject CrossHairTempRemove;
     public GameObject GameManagement;
 
     void Start(){
@@ -27,12 +28,20 @@ public class PopupDatablad : MonoBehaviour
         } 
         if(PopupAllowed == false && LiveDataAllowed == true){
             LiveData.SetActive(true);
+            CrossHairTempRemove.SetActive(false);
         } 
         if(PopupAllowed == true && LiveDataAllowed == false){
             Popup.SetActive(true);
+            CrossHairTempRemove.SetActive(false);
         } 
     }
     void OnTriggerExit(Collider other){
+        bool CrossHairTempReturn = GameManagement.GetComponent<GameManager>().CrossHair;
+        if (CrossHairTempReturn == true){
+            CrossHairTempRemove.SetActive(true);
+        } else {
+            CrossHairTempRemove.SetActive(false);
+        }
         Popup.SetActive(false);
         LiveData.SetActive(false);
         MoveObject(Popup, new Vector3(0, 0, 0));
