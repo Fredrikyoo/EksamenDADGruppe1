@@ -107,12 +107,12 @@ public class LiveDataValues : MonoBehaviour
             TagnameText.text = "DGX test";
         }
 
-        string[] DG1 = {"DG1-GEN-V ", "DG1-CURR", "DG1-COS-PHI", "DG1-GEN-FRQ", "G1-AVA-POW",
+        string[] DG1 = {"DG1-GEN-V", "DG1-CURR", "DG1-COS-PHI", "DG1-GEN-FRQ", "G1-AVA-POW",
                         "G1-U-L1/L2", "G1-I-L1", "G1-COSPHI-L1", "G1-FREQ-I-L1", "val5",
                         "G1-U-L1/L3", "G1-I-L2", "G1-COSPHI-L2", "G1-FREQ-I-L2", "val5",
                         "G1-U-L2/L3", "G1-I-L3", "G1-COSPHI-L3", "G1-FREQ-I-L3", "val5",
                         "DG1-CONN",""};
-        string[] DG2 = {"DG2-GEN-V ", "DG2-CURR", "DG2-COS-PHI", "DG2-GEN-FRQ", "G2-AVA-POW ",
+        string[] DG2 = {"DG2-GEN-V", "DG2-CURR", "DG2-COS-PHI", "DG2-GEN-FRQ", "G2-AVA-POW ",
                         "G2-U-L1/L2", "G2-I-L1", "G2-COSPHI-L1", "G2-FREQ-I-L1", "val5",
                         "G2-U-L1/L3", "G2-I-L2", "G2-COSPHI-L2", "G2-FREQ-I-L2", "val5",
                         "G2-U-L2/L3", "G2-I-L3", "G2-COSPHI-L3", "G2-FREQ-I-L3", "val5",
@@ -173,13 +173,24 @@ public class LiveDataValues : MonoBehaviour
             PDG1TextL3.text = "";
         }
     }
+    private string GetValues(GameObject Component){
+        string measurements = GetMeasurementFromDatabase(Component);            //henter målinger
+        string value1 = GetMeasurementByIndex(measurements,1);                  // finner AH og AHH
+        string value2 = GetMeasurementByIndex(measurements,2);
+        int value = int.Parse(value1) + int.Parse(value2);                      //regner tot varsler
+        if(int.Parse(value1) < int.Parse(value2)){                              //sjekker for error
+            return "3";
+        } else {
+            return value.ToString();
+        }
+    }
 
     private string GetMeasurementByIndex(string measurements,int index){        //func som henter fra databsen
         string[] parts = measurements.Split(',');                               //splitter data opp i deler i parts
         return parts[index];                                                    //gir tilbaake valgte måling
     }
     private string GetMeasurementFromDatabase(GameObject Component){                                //func som henter all måling
-        url = phpURL + "?name=" + Component.name + "&amount=1";                //lager ulr
+        url = "http://192.168.38.100/get-tunglab-data-by-tagname.php?name=" + Component.name + "&amount=1";                //lager ulr
         string response;
         using (WebClient client = new WebClient()){
             response = client.DownloadString(url);                              //ved å bruke konstruert url
