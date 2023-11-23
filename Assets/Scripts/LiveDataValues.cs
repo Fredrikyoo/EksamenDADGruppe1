@@ -46,9 +46,11 @@ public class LiveDataValues : MonoBehaviour
     TextMeshProUGUI TagnameText;
      
     private string url;
-    public string[] RealDG1 = {"DG1-RUN","DG1-GEN-V","DG1-LOAD","DG1-REV-PWR","DG1-LOAD-KVAR","DG1-GEN-FRQ",
-                    "DG1-VELOC","DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD"};
-
+    public string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",
+                    "DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD","DG1-RUN","DG1-REV-PWR"};
+    public string[] RealDG2 = {"DG2-GEN-V","DG2-LOAD","DG2-LOAD-KVAR","DG2-GEN-FRQ","DG2-VELOC",
+                    "DG2-VELOC","DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
+    public string[] TypeDGX = {" V"," MVA"," KVAR"," HZ"," M/S"," A"," A"," A","SHD?","RUN?","REV"};
     public List<TextMeshProUGUI> textList = new List<TextMeshProUGUI>();
     
     void Start(){
@@ -83,13 +85,6 @@ public class LiveDataValues : MonoBehaviour
             DG1Text.text = "Connected to database";
         } else if(Application.internetReachability==NetworkReachability.ReachableViaLocalAreaNetwork) {
             DG1Text.text = "Disconnected from database";
-            /*for(int i = 0; i < RealDG1.Length; i += 1)
-            {
-                textList[i].text = "";
-                Debug.Log(i);
-            }
-            COSqDG1Text.text = "ERROR";
-            COSqDG1TextL1.text = "ERROR";*/
         }
     }
     void OnTriggerEnter(Collider other){
@@ -107,7 +102,8 @@ public class LiveDataValues : MonoBehaviour
             textList[i].text = value;
         }
         Debug.Log("Operation Complete");
-        return valboi;
+        //Debug.Log("name = " + GameObject.name);
+        return valboi; 
     }
     private string GetMeasurementFromDatabase(string system){                                                   //func som henter all måling
         url = "http://192.168.38.100/get-tunglab-data-by-tagname.php?name=" + system + "&amount=1";             //lager ulr
