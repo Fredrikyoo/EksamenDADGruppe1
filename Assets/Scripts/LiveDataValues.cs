@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class LiveDataValues : MonoBehaviour
 {
@@ -72,6 +73,8 @@ public class LiveDataValues : MonoBehaviour
     private string url;
 
     //http://192.168.38.100/get-tunglab-data-by-tagname.php?name=DG1-LOAD&amount=1";
+
+    public List<TextMeshProUGUI> textList = new List<TextMeshProUGUI>();
     
     void Start(){
         DG1Text = DG1Button.GetComponent<TextMeshProUGUI>();
@@ -107,7 +110,16 @@ public class LiveDataValues : MonoBehaviour
             TagnameText.text = "DGX test";
         }
 
-        string[] DG1 = {"DG1-GEN-V", "DG1-CURR", "DG1-COS-PHI", "DG1-GEN-FRQ", "G1-AVA-POW",
+        textList.Add(DG1Text); textList.Add(UDG1Text); textList.Add(ADG1Text); textList.Add(COSqDG1Text); textList.Add(FDG1Text); textList.Add(PDG1Text);
+
+        /*string[] Texts = {DG1Text.text, UDG1Text.text, ADG1Text.text, COSqDG1Text.text, FDG1Text.text, PDG1Text.text, 
+                        UDG1TextL1.text, ADG1TextL1.text, COSqDG1TextL1.text, FDG1TextL1.text, PDG1TextL1.text,
+                        UDG1TextL2.text, ADG1TextL2.text, COSqDG1TextL2.text, FDG1TextL2.text, PDG1TextL2.text, 
+                        UDG1TextL3.text, ADG1TextL3.text, COSqDG1TextL3.text, FDG1TextL3.text, PDG1TextL3.text,
+                        StableText.text,TagnameText.text};
+
+
+        /*string[] DG1 = {"DG1-GEN-V", "DG1-CURR", "DG1-COS-PHI", "DG1-GEN-FRQ", "G1-AVA-POW",
                         "G1-U-L1/L2", "G1-I-L1", "G1-COSPHI-L1", "G1-FREQ-I-L1", "val5",
                         "G1-U-L1/L3", "G1-I-L2", "G1-COSPHI-L2", "G1-FREQ-I-L2", "val5",
                         "G1-U-L2/L3", "G1-I-L3", "G1-COSPHI-L3", "G1-FREQ-I-L3", "val5",
@@ -116,12 +128,13 @@ public class LiveDataValues : MonoBehaviour
                         "G2-U-L1/L2", "G2-I-L1", "G2-COSPHI-L1", "G2-FREQ-I-L1", "val5",
                         "G2-U-L1/L3", "G2-I-L2", "G2-COSPHI-L2", "G2-FREQ-I-L2", "val5",
                         "G2-U-L2/L3", "G2-I-L3", "G2-COSPHI-L3", "G2-FREQ-I-L3", "val5",
-                        "DG2-CONN",""};
+                        "DG2-CONN",""};*/
+        //to many errors.
     }
 
     void Update(){
          if(Application.internetReachability==NetworkReachability.NotReachable){
-            DG1Text.text = "Connected to database";
+            /*DG1Text.text = "Connected to database";
             UDG1Text.text = "400V";
             ADG1Text.text = "14A";
             COSqDG1Text.text = "0.8";
@@ -143,11 +156,12 @@ public class LiveDataValues : MonoBehaviour
             UDG1TextL3.text = "230V";
             ADG1TextL3.text = "14A";
             COSqDG1TextL3.text = "0.8";
-            FDG1TextL3.text = "50HZ";
+            FDG1TextL3.text = "50HZ";*/
             PDG1TextL3.text = "2587W";
 
         } else if(Application.internetReachability==NetworkReachability.ReachableViaLocalAreaNetwork) {
             DG1Text.text = "Disconnected from database";
+            /*
             UDG1Text.text = "";
             ADG1Text.text = "";
             COSqDG1Text.text = "ERROR";
@@ -170,31 +184,47 @@ public class LiveDataValues : MonoBehaviour
             ADG1TextL3.text = "";
             COSqDG1TextL3.text = "ERROR";
             FDG1TextL3.text = "";
-            PDG1TextL3.text = "";
+            PDG1TextL3.text = "";*/
         }
     }
-    private string GetValues(GameObject Component){
-        string measurements = GetMeasurementFromDatabase(Component);            //henter målinger
-        string value1 = GetMeasurementByIndex(measurements,1);                  // finner AH og AHH
-        string value2 = GetMeasurementByIndex(measurements,2);
-        int value = int.Parse(value1) + int.Parse(value2);                      //regner tot varsler
-        if(int.Parse(value1) < int.Parse(value2)){                              //sjekker for error
-            return "3";
-        } else {
-            return value.ToString();
-        }
+    void OnTriggerEnter(Collider other){
+        Debug.Log("Trigger enter");
+        string[] Texts = {DG1Text.text, UDG1Text.text, ADG1Text.text, COSqDG1Text.text, FDG1Text.text, PDG1Text.text, 
+                        UDG1TextL1.text, ADG1TextL1.text, COSqDG1TextL1.text, FDG1TextL1.text, PDG1TextL1.text,
+                        UDG1TextL2.text, ADG1TextL2.text, COSqDG1TextL2.text, FDG1TextL2.text, PDG1TextL2.text, 
+                        UDG1TextL3.text, ADG1TextL3.text, COSqDG1TextL3.text, FDG1TextL3.text, PDG1TextL3.text,
+                        StableText.text,TagnameText.text};
+        string[] RealDG1 = {"DG1-RUN","DG1-GEN-V","DG1-LOAD","DG1-REV-PWR","DG1-LOAD.KVAR","DG1-GEN-FRQ",
+                            "DG1-VELOC","DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD"};
+        string DoOperation = GetValues(RealDG1, Texts);
     }
 
-    private string GetMeasurementByIndex(string measurements,int index){        //func som henter fra databsen
-        string[] parts = measurements.Split(',');                               //splitter data opp i deler i parts
-        return parts[index];                                                    //gir tilbaake valgte måling
+    private string GetValues(string[] RealDG1, string[] Texts)
+    {
+        string valboi = "5";
+        //string measurements = GetMeasurementFromDatabase(RealDG1[0]);
+        //string value = GetMeasurementByIndex(measurements,0);
+        //DG1Text.text = value;
+        //textList[0].text = value;                                                         //Doesn't work //RealDG1.Length
+        for(int i = 0; i < 5; i += 1)
+        {
+            string measurements = GetMeasurementFromDatabase(RealDG1[i]);            //henter målinger
+            string value = GetMeasurementByIndex(measurements,0);                  // finner verdier
+            textList[i].text = value;
+        }
+        Debug.Log("Operation Complete");
+        return valboi;
     }
-    private string GetMeasurementFromDatabase(GameObject Component){                                //func som henter all måling
-        url = "http://192.168.38.100/get-tunglab-data-by-tagname.php?name=" + Component.name + "&amount=1";                //lager ulr
+    private string GetMeasurementFromDatabase(string system){                                //func som henter all måling
+        url = "http://192.168.38.100/get-tunglab-data-by-tagname.php?name=" + system + "&amount=1";                //lager ulr
         string response;
         using (WebClient client = new WebClient()){
             response = client.DownloadString(url);                              //ved å bruke konstruert url
         }
         return response;
+    }
+    private string GetMeasurementByIndex(string measurements,int index){        //func som henter fra databsen
+        string[] parts = measurements.Split(',');                               //splitter data opp i deler i parts
+        return parts[index];                                                    //gir tilbaake valgte måling
     }
 }
