@@ -17,23 +17,30 @@ public class PopupDatablad : MonoBehaviour
     void OnTriggerEnter(Collider other){
         bool PopupAllowed = GameManagement.GetComponent<GameManager>().Popups;
         bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;
-
-        if(PopupAllowed == true && LiveDataAllowed == true){
+        if(gameObject.name == "DG1" || gameObject.name == "DG2"){
+            if(PopupAllowed == true && LiveDataAllowed == true){
             //putting two pages beside eachother
             LiveData.SetActive(true);
             Popup.SetActive(true);
 
             MoveObject(Popup, new Vector3(220, 0, 0));
             MoveObject(LiveData, new Vector3(-220, 0, 0));
-        } 
-        if(PopupAllowed == false && LiveDataAllowed == true){
-            LiveData.SetActive(true);
-            CrossHairTempRemove.SetActive(false);
-        } 
-        if(PopupAllowed == true && LiveDataAllowed == false){
-            Popup.SetActive(true);
-            CrossHairTempRemove.SetActive(false);
-        } 
+            } 
+            if(PopupAllowed == false && LiveDataAllowed == true){
+                LiveData.SetActive(true);
+                CrossHairTempRemove.SetActive(false);
+            } 
+            if(PopupAllowed == true && LiveDataAllowed == false){
+                Popup.SetActive(true);
+                CrossHairTempRemove.SetActive(false);
+            }
+        } else {
+            if(PopupAllowed == true){
+                Popup.SetActive(true);
+                CrossHairTempRemove.SetActive(false);
+            }
+        }
+         
     }
     void OnTriggerExit(Collider other){
         bool CrossHairTempReturn = GameManagement.GetComponent<GameManager>().CrossHair;

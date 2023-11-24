@@ -29,22 +29,21 @@ public class LiveDataValues : MonoBehaviour
     public GameObject UDG1ButtonL2;
     public GameObject GameManagement;
 
-    TextMeshProUGUI DG1Text;
-    TextMeshProUGUI UDG1Text;
-    TextMeshProUGUI ADG1Text; 
-    TextMeshProUGUI COSqDG1Text;
-    TextMeshProUGUI FDG1Text;
-    TextMeshProUGUI PDG1Text; 
-     
-    TextMeshProUGUI UDG1TextL1;
-    TextMeshProUGUI ADG1TextL1; 
-    TextMeshProUGUI COSqDG1TextL1;
-    TextMeshProUGUI FDG1TextL1;
-    TextMeshProUGUI PDG1TextL1; 
+    TextMeshProUGUI DG1Text;        //conn
+    TextMeshProUGUI UDG1Text;       //spenning
+    TextMeshProUGUI ADG1Text;       //P last
+    TextMeshProUGUI COSqDG1Text;    //Q last
+    TextMeshProUGUI FDG1Text;       //freq
+    TextMeshProUGUI PDG1Text;       //veloc
+    TextMeshProUGUI UDG1TextL1;     //I-L1
+    TextMeshProUGUI ADG1TextL1;     //I-L2
+    TextMeshProUGUI COSqDG1TextL1;  //I-L3
+    TextMeshProUGUI FDG1TextL1;     //SHD
+    TextMeshProUGUI PDG1TextL1;     //RUN
 
-    TextMeshProUGUI UDG1TextL2;
-    TextMeshProUGUI StableText;
-    TextMeshProUGUI TagnameText;
+    TextMeshProUGUI UDG1TextL2;     //REV
+    TextMeshProUGUI StableText;     //correct
+    TextMeshProUGUI TagnameText;    //correct
      
     private string url;
     public List<TextMeshProUGUI> textList = new List<TextMeshProUGUI>();
@@ -72,12 +71,12 @@ public class LiveDataValues : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",               //verdier vi kan hente
+        string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",               //verdier vi kan hente lagt i liste
                     "DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD","DG1-RUN","DG1-REV-PWR"};
         string[] RealDG2 = {"DG2-GEN-V","DG2-LOAD","DG2-LOAD-KVAR","DG2-GEN-FRQ","DG2-VELOC",
                     "DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
         string[] TypeDGX = {"V","KW","KVAR","HZ","","A","A","A","SHD?","",""};
-        bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;                        //finner verdier hvi livdata er aktiv
+        bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;                        //finner verdier tilhørende DGX hvis livdata er aktiv
         if (LiveDataAllowed == true){
             if(gameObject.name == "DG1"){
                 GetValues(RealDG1, textList, TypeDGX);
@@ -116,12 +115,12 @@ public class LiveDataValues : MonoBehaviour
         url = "http://192.168.38.100/get-tunglab-data-by-tagname.php?name=" + system + "&amount=1";             //lager ulr
         string response;
         using (WebClient client = new WebClient()){
-            response = client.DownloadString(url);                              //ved å bruke konstruert url
+            response = client.DownloadString(url);                              //returne verdi hentet ved å bruke konstruert url
         }
         return response;
     }
-    private string GetMeasurementByIndex(string measurements,int index){        //func som henter fra databsen
-        string[] parts = measurements.Split(',');                               //splitter data opp i deler i parts
-        return parts[index];                                                    //gir tilbaake valgte måling
+    private string GetMeasurementByIndex(string measurements,int index){        //finner målingen vi ønsker
+        string[] parts = measurements.Split(',');                               
+        return parts[index];                                                    
     }
 }

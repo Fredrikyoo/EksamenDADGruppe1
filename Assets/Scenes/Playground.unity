@@ -40088,7 +40088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Popup: {fileID: 58948724}
   LiveData: {fileID: 268819089}
-  CrossHairTempRemove: {fileID: 0}
+  CrossHairTempRemove: {fileID: 151846666}
   GameManagement: {fileID: 416074422}
 --- !u!65 &1155102901
 BoxCollider:
