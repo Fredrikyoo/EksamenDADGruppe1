@@ -46,11 +46,6 @@ public class LiveDataValues : MonoBehaviour
     TextMeshProUGUI TagnameText;
      
     private string url;
-    public string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",
-                    "DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD","DG1-RUN","DG1-REV-PWR"};
-    public string[] RealDG2 = {"DG2-GEN-V","DG2-LOAD","DG2-LOAD-KVAR","DG2-GEN-FRQ","DG2-VELOC",
-                    "DG2-VELOC","DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
-    public string[] TypeDGX = {" V"," MVA"," KVAR"," HZ"," M/S"," A"," A"," A","SHD?","RUN?","REV"};
     public List<TextMeshProUGUI> textList = new List<TextMeshProUGUI>();
     
     void Start(){
@@ -89,17 +84,29 @@ public class LiveDataValues : MonoBehaviour
     }
     void OnTriggerEnter(Collider other){
         Debug.Log("Trigger enter");
-        string DoOperation = GetValues(RealDG1, textList);
+        string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",
+                    "DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD","DG1-RUN","DG1-REV-PWR"};
+        string[] RealDG2 = {"DG2-GEN-V","DG2-LOAD","DG2-LOAD-KVAR","DG2-GEN-FRQ","DG2-VELOC",
+                    "DG2-VELOC","DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
+        string[] TypeDGX = {"V","MVA","KVAR","HZ","","A","A","A","SHD?","","REV"};
+        string DoOperation = GetValues(RealDG1, textList, TypeDGX);
     }
 
-    private string GetValues(string[] RealDG1, List<TextMeshProUGUI> Texts)
+    private string GetValues(string[] RealDG1, List<TextMeshProUGUI> Texts, string[] type)
     {
         string valboi = "5";                                                        
         for(int i = 0; i < RealDG1.Length; i += 1)
         {
             string measurements = GetMeasurementFromDatabase(RealDG1[i]);          //henter målinger
             string value = GetMeasurementByIndex(measurements,1);                  // finner verdier
-            textList[i].text = value;
+            textList[i].text = value + type[i];
+        }
+        if(textList[RealDG1.Length-2].text == "1"){
+            textList[RealDG1.Length-2].text = "running";
+            textList[RealDG1.Length-1].text = "";
+        } else {
+            textList[RealDG1.Length-2].text = "not running";
+            textList[RealDG1.Length-1].text = "";
         }
         Debug.Log("Operation Complete");
         //Debug.Log("name = " + GameObject.name);
