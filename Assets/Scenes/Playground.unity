@@ -19470,20 +19470,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef03849421785e469f1486bb947da40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DG1Button: {fileID: 452591849}
-  UDG1Button: {fileID: 661443181}
-  ADG1Button: {fileID: 1754392425}
-  COSqDG1Button: {fileID: 1027663088}
-  FDG1Button: {fileID: 2027120655}
-  PDG1Button: {fileID: 2095475356}
-  UDG1ButtonL1: {fileID: 1786304850}
-  ADG1ButtonL1: {fileID: 960416528}
-  COSqDG1ButtonL1: {fileID: 1948917061}
-  FDG1ButtonL1: {fileID: 1588473058}
-  PDG1ButtonL1: {fileID: 1188210917}
-  UDG1Stable: {fileID: 161449940}
-  UDG1Tagname: {fileID: 1571511539}
-  UDG1ButtonL2: {fileID: 1427310929}
+  ConDGXtmp: {fileID: 452591849}
+  UDGXtmp: {fileID: 661443181}
+  PDGXtmp: {fileID: 1754392425}
+  QDGXtmp: {fileID: 1027663088}
+  FDGXtmp: {fileID: 2027120655}
+  VelDGXtmp: {fileID: 2095475356}
+  IDGXtmpL1: {fileID: 1786304850}
+  IDGXtmpL2: {fileID: 960416528}
+  IDGXtmpL3: {fileID: 1948917061}
+  SdhDGXtmp: {fileID: 1588473058}
+  RunDGXtmp: {fileID: 1188210917}
+  RevDGXtmp: {fileID: 1427310929}
+  TagDGXtmp: {fileID: 1571511539}
+  StaDG1tmp: {fileID: 161449940}
   GameManagement: {fileID: 416074422}
   textList: []
 --- !u!4 &899635820 stripped
@@ -66467,20 +66467,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef03849421785e469f1486bb947da40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DG1Button: {fileID: 452591849}
-  UDG1Button: {fileID: 661443181}
-  ADG1Button: {fileID: 1754392425}
-  COSqDG1Button: {fileID: 1027663088}
-  FDG1Button: {fileID: 2027120655}
-  PDG1Button: {fileID: 2095475356}
-  UDG1ButtonL1: {fileID: 1786304850}
-  ADG1ButtonL1: {fileID: 960416528}
-  COSqDG1ButtonL1: {fileID: 1948917061}
-  FDG1ButtonL1: {fileID: 1588473058}
-  PDG1ButtonL1: {fileID: 1188210917}
-  UDG1Stable: {fileID: 161449940}
-  UDG1Tagname: {fileID: 1571511539}
-  UDG1ButtonL2: {fileID: 1427310929}
+  ConDGXtmp: {fileID: 452591849}
+  UDGXtmp: {fileID: 661443181}
+  PDGXtmp: {fileID: 1754392425}
+  QDGXtmp: {fileID: 1027663088}
+  FDGXtmp: {fileID: 2027120655}
+  VelDGXtmp: {fileID: 2095475356}
+  IDGXtmpL1: {fileID: 1786304850}
+  IDGXtmpL2: {fileID: 960416528}
+  IDGXtmpL3: {fileID: 1948917061}
+  SdhDGXtmp: {fileID: 1588473058}
+  RunDGXtmp: {fileID: 1188210917}
+  RevDGXtmp: {fileID: 1427310929}
+  TagDGXtmp: {fileID: 1571511539}
+  StaDG1tmp: {fileID: 161449940}
   GameManagement: {fileID: 416074422}
   textList: []
 --- !u!1001 &2127123935

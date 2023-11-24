@@ -8,75 +8,69 @@ using System.Collections.Generic;
 
 public class LiveDataValues : MonoBehaviour
 {
-    [Header("Diesel Generatior Main")]
-    public GameObject DG1Button;
-    public GameObject UDG1Button;
-    public GameObject ADG1Button;
-    public GameObject COSqDG1Button;
-    public GameObject FDG1Button;
-    public GameObject PDG1Button;
-
-    [Header("Diesel Generatior L1")]
-    public GameObject UDG1ButtonL1;
-    public GameObject ADG1ButtonL1;
-    public GameObject COSqDG1ButtonL1;
-    public GameObject FDG1ButtonL1;
-    public GameObject PDG1ButtonL1;
-
-    [Header("Other Values")]
-    public GameObject UDG1Stable;
-    public GameObject UDG1Tagname;
-    public GameObject UDG1ButtonL2;
+    public GameObject ConDGXtmp;
+    public GameObject UDGXtmp;
+    public GameObject PDGXtmp;
+    public GameObject QDGXtmp;
+    public GameObject FDGXtmp;
+    public GameObject VelDGXtmp;
+    public GameObject IDGXtmpL1;
+    public GameObject IDGXtmpL2;
+    public GameObject IDGXtmpL3;
+    public GameObject SdhDGXtmp;
+    public GameObject RunDGXtmp;
+    public GameObject RevDGXtmp;
+    public GameObject TagDGXtmp;
+    public GameObject StaDG1tmp;
     public GameObject GameManagement;
 
-    TextMeshProUGUI DG1Text;        //conn
-    TextMeshProUGUI UDG1Text;       //spenning
-    TextMeshProUGUI ADG1Text;       //P last
-    TextMeshProUGUI COSqDG1Text;    //Q last
-    TextMeshProUGUI FDG1Text;       //freq
-    TextMeshProUGUI PDG1Text;       //veloc
-    TextMeshProUGUI UDG1TextL1;     //I-L1
-    TextMeshProUGUI ADG1TextL1;     //I-L2
-    TextMeshProUGUI COSqDG1TextL1;  //I-L3
-    TextMeshProUGUI FDG1TextL1;     //SHD
-    TextMeshProUGUI PDG1TextL1;     //RUN
+    TextMeshProUGUI ConDGXText;      
+    TextMeshProUGUI UDGXText;      
+    TextMeshProUGUI PDGXText;      
+    TextMeshProUGUI QDGXText;    
+    TextMeshProUGUI FDGXText;     
+    TextMeshProUGUI VelDGXText;    
+    TextMeshProUGUI IDGXTextL1;    
+    TextMeshProUGUI IDGXTextL2;  
+    TextMeshProUGUI IDGXTextL3;  
+    TextMeshProUGUI SdhDGXText;    
+    TextMeshProUGUI RunDGXText;   
 
-    TextMeshProUGUI UDG1TextL2;     //REV
-    TextMeshProUGUI StableText;     //correct
-    TextMeshProUGUI TagnameText;    //correct
+    TextMeshProUGUI RevDGXText;     
+    TextMeshProUGUI StableText;     
+    TextMeshProUGUI TagnameText;    
      
     private string url;
     public List<TextMeshProUGUI> textList = new List<TextMeshProUGUI>();
     
     void Start(){
-        DG1Text = DG1Button.GetComponent<TextMeshProUGUI>();
-        UDG1Text = UDG1Button.GetComponent<TextMeshProUGUI>();
-        ADG1Text = ADG1Button.GetComponent<TextMeshProUGUI>();
-        COSqDG1Text = COSqDG1Button.GetComponent<TextMeshProUGUI>();
-        FDG1Text = FDG1Button.GetComponent<TextMeshProUGUI>();
-        PDG1Text = PDG1Button.GetComponent<TextMeshProUGUI>();
+        UDGXText = UDGXtmp.GetComponent<TextMeshProUGUI>();
+        PDGXText = PDGXtmp.GetComponent<TextMeshProUGUI>();
+        QDGXText = QDGXtmp.GetComponent<TextMeshProUGUI>();
+        FDGXText = FDGXtmp.GetComponent<TextMeshProUGUI>();
+        VelDGXText = VelDGXtmp.GetComponent<TextMeshProUGUI>();
+        IDGXTextL1 = IDGXtmpL1.GetComponent<TextMeshProUGUI>();
+        IDGXTextL2 = IDGXtmpL2.GetComponent<TextMeshProUGUI>();
+        IDGXTextL3 = IDGXtmpL3.GetComponent<TextMeshProUGUI>();
+        SdhDGXText = SdhDGXtmp.GetComponent<TextMeshProUGUI>();
+        RunDGXText = RunDGXtmp.GetComponent<TextMeshProUGUI>();
+        RevDGXText = RevDGXtmp.GetComponent<TextMeshProUGUI>();
 
-        UDG1TextL1 = UDG1ButtonL1.GetComponent<TextMeshProUGUI>();
-        ADG1TextL1 = ADG1ButtonL1.GetComponent<TextMeshProUGUI>();
-        COSqDG1TextL1 = COSqDG1ButtonL1.GetComponent<TextMeshProUGUI>();
-        FDG1TextL1 = FDG1ButtonL1.GetComponent<TextMeshProUGUI>();
-        PDG1TextL1 = PDG1ButtonL1.GetComponent<TextMeshProUGUI>();
-        UDG1TextL2 = UDG1ButtonL2.GetComponent<TextMeshProUGUI>();
-
-        StableText = UDG1Stable.GetComponent<TextMeshProUGUI>();
-        TagnameText = UDG1Tagname.GetComponent<TextMeshProUGUI>();
+        ConDGXText = ConDGXtmp.GetComponent<TextMeshProUGUI>();
+        StableText = StaDG1tmp.GetComponent<TextMeshProUGUI>();
+        TagnameText = TagDGXtmp.GetComponent<TextMeshProUGUI>();
         
-        textList.Add(UDG1Text); textList.Add(ADG1Text); textList.Add(COSqDG1Text); textList.Add(FDG1Text); textList.Add(PDG1Text); textList.Add(UDG1TextL1); 
-        textList.Add(ADG1TextL1); textList.Add(COSqDG1TextL1); textList.Add(FDG1TextL1); textList.Add(PDG1TextL1); textList.Add(UDG1TextL2);
+        textList.Add(UDGXText); textList.Add(PDGXText); textList.Add(QDGXText); textList.Add(FDGXText); textList.Add(VelDGXText); textList.Add(IDGXTextL1); 
+        textList.Add(IDGXTextL2); textList.Add(IDGXTextL3); textList.Add(SdhDGXText); textList.Add(RunDGXText); textList.Add(RevDGXText);
     }
 
     void OnTriggerEnter(Collider other){
-        string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",               //verdier vi kan hente lagt i liste
+        string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",           //verdier vi kan hente lagt i liste
                     "DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD","DG1-RUN","DG1-REV-PWR"};
         string[] RealDG2 = {"DG2-GEN-V","DG2-LOAD","DG2-LOAD-KVAR","DG2-GEN-FRQ","DG2-VELOC",
                     "DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
         string[] TypeDGX = {"V","KW","KVAR","HZ","","A","A","A","SHD?","",""};
-        bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;                        //finner verdier tilhørende DGX hvis livdata er aktiv
+        bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;                    //finner verdier tilhørende DGX hvis live er aktiv
         if (LiveDataAllowed == true){
             if(gameObject.name == "DG1"){
                 GetValues(RealDG1, textList, TypeDGX);
@@ -93,22 +87,22 @@ public class LiveDataValues : MonoBehaviour
         for(int i = 0; i < RealDG1.Length; i += 1)
         {
             string measurements = GetMeasurementFromDatabase(RealDG1[i]);          //henter målinger
-            string value = GetMeasurementByIndex(measurements,1);                  // finner verdier
+            string value = GetMeasurementByIndex(measurements,1);                  //velger ønsket verdi
             textList[i].text = value + type[i];
         }
         if(textList[RealDG1.Length-2].text == "1"){
             if(textList[RealDG1.Length-1].text == "1"){
-                textList[RealDG1.Length-2].text = "running reverse";
+                textList[RealDG1.Length-2].text = "Running reverse";
             } else {
-                textList[RealDG1.Length-2].text = "running forward";
+                textList[RealDG1.Length-2].text = "Running forward";
             }
         } else {
-            textList[RealDG1.Length-2].text = "not running";
+            textList[RealDG1.Length-2].text = "Not running";
         }
         textList[RealDG1.Length-1].text = "";
         StableText.text = "Stable"; //Extension -> AH AHH AL og ALL signaler eksiterer ikke enda
         TagnameText.text = "Tagname: " + gameObject.name;
-        DG1Text.text = "Connected to database";
+        ConDGXText.text = "Connected to database";
         Debug.Log("Operation Complete");
     }
     private string GetMeasurementFromDatabase(string system){                                                   //func som henter all måling
