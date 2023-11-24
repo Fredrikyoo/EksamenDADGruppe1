@@ -27,6 +27,7 @@ public class LiveDataValues : MonoBehaviour
     public GameObject UDG1Stable;
     public GameObject UDG1Tagname;
     public GameObject UDG1ButtonL2;
+    public GameObject GameManagement;
 
     TextMeshProUGUI DG1Text;
     TextMeshProUGUI UDG1Text;
@@ -65,36 +66,31 @@ public class LiveDataValues : MonoBehaviour
 
         StableText = UDG1Stable.GetComponent<TextMeshProUGUI>();
         TagnameText = UDG1Tagname.GetComponent<TextMeshProUGUI>();
-
-        if(Application.internetReachability==NetworkReachability.NotReachable){
-            StableText.text = "Stable test";
-            TagnameText.text = "DGX test";
-        }
-        // setter inn if DG1 / DG2
+        
         textList.Add(UDG1Text); textList.Add(ADG1Text); textList.Add(COSqDG1Text); textList.Add(FDG1Text); textList.Add(PDG1Text); textList.Add(UDG1TextL1); 
         textList.Add(ADG1TextL1); textList.Add(COSqDG1TextL1); textList.Add(FDG1TextL1); textList.Add(PDG1TextL1); textList.Add(UDG1TextL2);
     }
 
-    void Update(){
-         if(Application.internetReachability==NetworkReachability.NotReachable){
-            DG1Text.text = "Connected to database";
-        } else if(Application.internetReachability==NetworkReachability.ReachableViaLocalAreaNetwork) {
-            DG1Text.text = "Disconnected from database";
-        }
-    }
     void OnTriggerEnter(Collider other){
-        Debug.Log("Trigger enter");
-        string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",
+        string[] RealDG1 = {"DG1-GEN-V","DG1-LOAD","DG1-LOAD-KVAR","DG1-GEN-FRQ","DG1-VELOC",               //verdier vi kan hente
                     "DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD","DG1-RUN","DG1-REV-PWR"};
         string[] RealDG2 = {"DG2-GEN-V","DG2-LOAD","DG2-LOAD-KVAR","DG2-GEN-FRQ","DG2-VELOC",
-                    "DG2-VELOC","DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
-        string[] TypeDGX = {"V","MVA","KVAR","HZ","","A","A","A","SHD?","","REV"};
-        string DoOperation = GetValues(RealDG1, textList, TypeDGX);
+                    "DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
+        string[] TypeDGX = {"V","KW","KVAR","HZ","","A","A","A","SHD?","",""};
+        bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;                        //finner verdier hvi livdata er aktiv
+        if (LiveDataAllowed == true){
+            if(gameObject.name == "DG1"){
+                GetValues(RealDG1, textList, TypeDGX);
+            } else if(gameObject.name == "DG2"){
+                GetValues(RealDG2, textList, TypeDGX);
+            } else {
+                Debug.Log("error");
+            }
+        }
     }
 
-    private string GetValues(string[] RealDG1, List<TextMeshProUGUI> Texts, string[] type)
-    {
-        string valboi = "5";                                                        
+    private void GetValues(string[] RealDG1, List<TextMeshProUGUI> Texts, string[] type)
+    {                                                      
         for(int i = 0; i < RealDG1.Length; i += 1)
         {
             string measurements = GetMeasurementFromDatabase(RealDG1[i]);          //henter målinger
@@ -102,15 +98,19 @@ public class LiveDataValues : MonoBehaviour
             textList[i].text = value + type[i];
         }
         if(textList[RealDG1.Length-2].text == "1"){
-            textList[RealDG1.Length-2].text = "running";
-            textList[RealDG1.Length-1].text = "";
+            if(textList[RealDG1.Length-1].text == "1"){
+                textList[RealDG1.Length-2].text = "running reverse";
+            } else {
+                textList[RealDG1.Length-2].text = "running forward";
+            }
         } else {
             textList[RealDG1.Length-2].text = "not running";
-            textList[RealDG1.Length-1].text = "";
         }
+        textList[RealDG1.Length-1].text = "";
+        StableText.text = "Stable"; //Extension -> AH AHH AL og ALL signaler eksiterer ikke enda
+        TagnameText.text = "Tagname: " + gameObject.name;
+        DG1Text.text = "Connected to database";
         Debug.Log("Operation Complete");
-        //Debug.Log("name = " + GameObject.name);
-        return valboi; 
     }
     private string GetMeasurementFromDatabase(string system){                                                   //func som henter all måling
         url = "http://192.168.38.100/get-tunglab-data-by-tagname.php?name=" + system + "&amount=1";             //lager ulr
