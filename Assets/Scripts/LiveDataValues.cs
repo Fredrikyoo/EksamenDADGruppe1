@@ -69,7 +69,7 @@ public class LiveDataValues : MonoBehaviour
                     "DG1-I-L1","DG1-I-L2","DG1-I-L3","DG1-SHD","DG1-RUN","DG1-REV-PWR"};
         string[] RealDG2 = {"DG2-GEN-V","DG2-LOAD","DG2-LOAD-KVAR","DG2-GEN-FRQ","DG2-VELOC",
                     "DG2-I-L1","DG2-I-L2","DG2-I-L3","DG2-SHD", "DG2-RUN","DG2-REV-PWR"};
-        string[] TypeDGX = {"V","KW","KVAR","HZ","","A","A","A","SHD?","",""};
+        string[] TypeDGX = {"V","KW","KVAR","HZ","","A","A","A","","",""};
         bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;                    //finner verdier tilhørende DGX hvis live er aktiv
         if (LiveDataAllowed == true){
             if(gameObject.name == "DG1"){
@@ -98,6 +98,11 @@ public class LiveDataValues : MonoBehaviour
             }
         } else {
             textList[RealDG1.Length-2].text = "Not running";
+        }
+        if(SdhDGXText.text == "1"){
+            SdhDGXText.text = "On";
+        } else {
+            SdhDGXText.text = "Off";
         }
         textList[RealDG1.Length-1].text = "";
         StableText.text = "Stable"; //Extension -> AH AHH AL og ALL signaler eksiterer ikke enda

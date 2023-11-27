@@ -19434,7 +19434,7 @@ GameObject:
   - component: {fileID: 898348272}
   - component: {fileID: 898348274}
   m_Layer: 0
-  m_Name: DG1
+  m_Name: DG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41320,10 +41320,16 @@ MonoBehaviour:
   TE302tmp: {fileID: 1239742878}
   TE303tmp: {fileID: 262726426}
   TE304tmp: {fileID: 300333873}
-  HE102tmp: {fileID: 1854210544}
+  TE101tmp: {fileID: 1854210544}
+  HE102tmp: {fileID: 1199396249}
   Statictmp: {fileID: 1943018131}
   GameManagement: {fileID: 416074422}
   textListTV: []
+--- !u!1 &1199396249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2568968232467249329, guid: 6a157dc46cfb0ee4d8f13bc468e1e7e8, type: 3}
+  m_PrefabInstance: {fileID: 1199396244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1199396255 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8726735946062026981, guid: 6a157dc46cfb0ee4d8f13bc468e1e7e8, type: 3}
@@ -66656,7 +66662,7 @@ GameObject:
   - component: {fileID: 2126683662}
   - component: {fileID: 2126683664}
   m_Layer: 0
-  m_Name: DG2
+  m_Name: DG1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
