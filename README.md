@@ -28,5 +28,5 @@ Rendering Issues:
 <img height="180" alt="image" src="https://github.com/Fredrikyoo/EksamenDADGruppe1/assets/97510718/7fc1f12a-f34b-4a66-94ed-6b1f7a47fd5f">
 
 
-Informasjon om prosjektet:
- -  Les rapporten "INSERT RAPPORT".
+Mer informasjon om prosjektet:
+ -  Les rapporten Case_Rapport.PDF
