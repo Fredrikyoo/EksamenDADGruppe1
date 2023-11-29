@@ -29,4 +29,4 @@ Rendering Issues:
 
 
 Mer informasjon om prosjektet:
- -  Les rapporten Case_Rapport.PDF
+ -  Les rapporten Case_Rapport.pdf
