@@ -23,8 +23,8 @@ public class PopupDatablad : MonoBehaviour
             LiveData.SetActive(true);
             Popup.SetActive(true);
 
-            MoveObject(Popup, new Vector3(220, 0, 0));
-            MoveObject(LiveData, new Vector3(-220, 0, 0));
+            MoveObject(Popup, new Vector3(Screen.width / 4f, Screen.height / 2f, 0));
+            MoveObject(LiveData, new Vector3(-Screen.width / 4f, Screen.height / 2f, 0));
             } 
             if(PopupAllowed == false && LiveDataAllowed == true){
                 LiveData.SetActive(true);
@@ -51,8 +51,8 @@ public class PopupDatablad : MonoBehaviour
         }
         Popup.SetActive(false);
         LiveData.SetActive(false);
-        MoveObject(Popup, new Vector3(0, 0, 0));
-        MoveObject(LiveData, new Vector3(0, 0, 0));
+        MoveObject(Popup, new Vector3(Screen.width / 4f, Screen.height / 2f, 0));
+        MoveObject(LiveData, new Vector3(Screen.width / 4f, Screen.height / 2f, 0));
     }
     void MoveObject(GameObject obj, Vector3 offset)
     {
