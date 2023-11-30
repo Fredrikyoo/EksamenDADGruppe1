@@ -14,7 +14,7 @@ Kjøre Unity-prosjektet: ved problemer av oppstart kan du teste følgende:
 Endre innstillinger i unity:
 
   - Det er lagt opp til å endre settings inne på startskjermen under settings.
-  - Inne i simulatoren er det også mulig å sette simuleringen på pause ved å trykke 'P' og endre innstilngene derfra.
+  - Inne i simulatoren er det også mulig å sette simuleringen på pause ved å trykke 'P' og endre innstillingene derfra.
 
 Gjøre endringer i prosjektet:
 
