@@ -7,7 +7,7 @@ Problemer med å starte Unity-prosjektet?
 
 Kjøre Unity-prosjektet:
 
-  - Naviger til EksamenDADGruppe1 under Eksamenbuild og start Unity.
+  - Naviger til EksamenDADGruppe1 start Unity.
 
 Endre innstillinger i unity:
 
