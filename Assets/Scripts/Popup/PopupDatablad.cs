@@ -58,5 +58,15 @@ public class PopupDatablad : MonoBehaviour
     {
         RectTransform rectTransform = obj.GetComponent<RectTransform>();
         rectTransform.anchoredPosition3D = offset;
+        Debug.Log(Screen.width);
+        if(Screen.width > 2400){
+            rectTransform.sizeDelta = new Vector2(1000, 1000);
+        }else if(Screen.width > 1200){
+            rectTransform.sizeDelta = new Vector2(600, 600);
+        }else if(Screen.width > 800){
+            rectTransform.sizeDelta = new Vector2(400, 400);
+        }else{
+            rectTransform.sizeDelta = new Vector2(200, 200);
+        }
     }
 }

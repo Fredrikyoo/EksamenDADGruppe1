@@ -8,6 +8,8 @@ using System.Collections.Generic;
 
 public class LiveDataValues : MonoBehaviour
 {
+    private bool testing;
+
     public GameObject ConDGXtmp;
     public GameObject UDGXtmp;
     public GameObject PDGXtmp;
@@ -83,31 +85,53 @@ public class LiveDataValues : MonoBehaviour
     }
 
     private void GetValues(string[] RealDG1, List<TextMeshProUGUI> Texts, string[] type)
-    {                                                      
-        for(int i = 0; i < RealDG1.Length; i += 1)
-        {
+    {    
+        testing = true; //Ingeniør kan endre denne verdien under testing
+        if(testing == false){
+            for(int i = 0; i < RealDG1.Length; i += 1)
+            {
             string measurements = GetMeasurementFromDatabase(RealDG1[i]);          //henter målinger
             string value = GetMeasurementByIndex(measurements,1);                  //velger ønsket verdi
             textList[i].text = value + type[i];
-        }
-        if(textList[RealDG1.Length-2].text == "1"){
-            if(textList[RealDG1.Length-1].text == "1"){
-                textList[RealDG1.Length-2].text = "Running reverse";
-            } else {
-                textList[RealDG1.Length-2].text = "Running forward";
             }
-        } else {
-            textList[RealDG1.Length-2].text = "Not running";
-        }
-        if(SdhDGXText.text == "1"){
-            SdhDGXText.text = "On";
-        } else {
-            SdhDGXText.text = "Off";
-        }
-        textList[RealDG1.Length-1].text = "";
-        StableText.text = "Stable"; //Extension -> AH AHH AL og ALL signaler eksiterer ikke enda
-        TagnameText.text = "Tagname: " + gameObject.name;
-        ConDGXText.text = "Connected to database";
+            if(textList[RealDG1.Length-2].text == "1"){
+                if(textList[RealDG1.Length-1].text == "1"){
+                    textList[RealDG1.Length-2].text = "Running reverse";
+                } else {
+                    textList[RealDG1.Length-2].text = "Running forward";
+                }
+            } else {
+                textList[RealDG1.Length-2].text = "Not running";
+            }
+            if(SdhDGXText.text == "1"){
+                SdhDGXText.text = "On";
+            } else {
+                SdhDGXText.text = "Off";
+            }
+            textList[RealDG1.Length-1].text = "";
+            StableText.text = "Stable"; //Extension -> AH AHH AL og ALL signaler eksiterer ikke enda
+            TagnameText.text = "Tagname: " + gameObject.name;
+            ConDGXText.text = "Connected to database";
+        }else{
+            Debug.Log("Testing mode on, toggle testing mode on component object");
+        }     
+        for(int i = 0; i < RealDG1.Length; i += 1){
+                if(Screen.width > 2400){
+                    //placholder
+                }else if(Screen.width > 1200){
+                    textList[i].fontSize = 30;
+                    StableText.fontSize = 30;
+                    TagnameText.fontSize = 30;
+                    ConDGXText.fontSize = 30;
+                }else if(Screen.width > 800){
+                    textList[i].fontSize = 20;
+                    StableText.fontSize = 20;
+                    TagnameText.fontSize = 20;
+                    ConDGXText.fontSize = 20;
+                }else{
+                    //placholder
+                }
+            }                                             
         Debug.Log("Operation Complete");
     }
     private string GetMeasurementFromDatabase(string system){                                                   //func som henter all måling
