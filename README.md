@@ -2,7 +2,7 @@
 
 Problemer med å starte Unity-prosjektet?
 
-  - Start med å laste ned Blender og GitHub Desktop.
+  - Start med å laste ned Blender 3.6LTS og GitHub Desktop.
   - Når Blender er installert, åpne GitHub Desktop og klon repositoryet til en passende mappe.
 
 Kjøre Unity-prosjektet:
