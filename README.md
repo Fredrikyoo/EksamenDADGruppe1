@@ -6,6 +6,7 @@ Problemer med å starte Unity-prosjektet?
   - Når Blender er installert, åpne GitHub Desktop og klon repositoryet til en passende mappe.
 
 Kjøre Unity-prosjektet: ved problemer av oppstart kan du teste følgende:
+  - Det er per dags problemer med å få pushe fullversjon med build til github, så dette må gjøres manuelt hos hver bruker. 
 
   - Åpne prosjektet fra unity hub etter å ha klonet repositoryet. Deretter klikk files --> build settings --> Build. Kjør deretter den filen du opprettet for å kjøre simulatoren i "spill modus".
   - Dersom du ikke får buildet. Window --> general --> services. deretter åpner du general settings og skaffer "lisens" til å builde. Legg til din "bruker" som organisasjon.
