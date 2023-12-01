@@ -25,6 +25,8 @@ public class LiveDataValues : MonoBehaviour
     public GameObject TagDGXtmp;
     public GameObject StaDG1tmp;
     public GameObject GameManagement;
+    public GameObject StaticSetup1tmp;
+    public GameObject StaticSetup2tmp;
 
     TextMeshProUGUI ConDGXText;      
     TextMeshProUGUI UDGXText;      
@@ -40,7 +42,10 @@ public class LiveDataValues : MonoBehaviour
 
     TextMeshProUGUI RevDGXText;     
     TextMeshProUGUI StableText;     
-    TextMeshProUGUI TagnameText;    
+    TextMeshProUGUI TagnameText; 
+    TextMeshProUGUI StaticSetup1Text;     
+    TextMeshProUGUI StaticSetup2Text;
+
      
     private string url;
     public List<TextMeshProUGUI> textList = new List<TextMeshProUGUI>();
@@ -61,6 +66,8 @@ public class LiveDataValues : MonoBehaviour
         ConDGXText = ConDGXtmp.GetComponent<TextMeshProUGUI>();
         StableText = StaDG1tmp.GetComponent<TextMeshProUGUI>();
         TagnameText = TagDGXtmp.GetComponent<TextMeshProUGUI>();
+        StaticSetup1Text = StaticSetup1tmp.GetComponent<TextMeshProUGUI>();
+        StaticSetup2Text = StaticSetup2tmp.GetComponent<TextMeshProUGUI>();
         
         textList.Add(UDGXText); textList.Add(PDGXText); textList.Add(QDGXText); textList.Add(FDGXText); textList.Add(VelDGXText); textList.Add(IDGXTextL1); 
         textList.Add(IDGXTextL2); textList.Add(IDGXTextL3); textList.Add(SdhDGXText); textList.Add(RunDGXText); textList.Add(RevDGXText);
@@ -86,22 +93,23 @@ public class LiveDataValues : MonoBehaviour
 
     private void GetValues(string[] RealDG1, List<TextMeshProUGUI> Texts, string[] type)
     {    
-        testing = true; //Ingeniør kan endre denne verdien under testing
+        testing = false; //Ingeniør kan endre denne verdien under testing
         if(testing == false){
             for(int i = 0; i < RealDG1.Length; i += 1)
             {
-            string measurements = GetMeasurementFromDatabase(RealDG1[i]);          //henter målinger
-            string value = GetMeasurementByIndex(measurements,1);                  //velger ønsket verdi
-            textList[i].text = value + type[i];
+                string measurements = GetMeasurementFromDatabase(RealDG1[i]);          //henter målinger
+                string value = GetMeasurementByIndex(measurements,1);                  //velger ønsket verdi
+                textList[i].text = value + type[i];
             }
-            if(textList[RealDG1.Length-2].text == "1"){
-                if(textList[RealDG1.Length-1].text == "1"){
-                    textList[RealDG1.Length-2].text = "Running reverse";
-                } else {
-                    textList[RealDG1.Length-2].text = "Running forward";
-                }
-            } else {
-                textList[RealDG1.Length-2].text = "Not running";
+            if(RevDGXText.text == "1"){
+                RevDGXText.text = "ON";
+            }else{
+                RevDGXText.text = "OFF";
+            }
+            if(RunDGXText.text == "1"){
+                RunDGXText.text = "Running";
+            }else{
+                RunDGXText.text = "Not running";
             }
             if(SdhDGXText.text == "1"){
                 SdhDGXText.text = "On";
@@ -115,23 +123,66 @@ public class LiveDataValues : MonoBehaviour
         }else{
             Debug.Log("Testing mode on, toggle testing mode on component object");
         }     
-        for(int i = 0; i < RealDG1.Length; i += 1){
-                if(Screen.width > 2400){
-                    //placholder
-                }else if(Screen.width > 1200){
-                    textList[i].fontSize = 30;
-                    StableText.fontSize = 30;
-                    TagnameText.fontSize = 30;
-                    ConDGXText.fontSize = 30;
-                }else if(Screen.width > 800){
-                    textList[i].fontSize = 20;
-                    StableText.fontSize = 20;
-                    TagnameText.fontSize = 20;
-                    ConDGXText.fontSize = 20;
-                }else{
-                    //placholder
-                }
-            }                                             
+        for(int i = 0; i < RealDG1.Length; i += 1){     //juster skrift str
+            if(Screen.width > 2400){
+                //placholder
+            }else if(Screen.width > 1200){
+                textList[i].fontSize = 30;
+                StableText.fontSize = 30;
+                TagnameText.fontSize = 30;
+                ConDGXText.fontSize = 30;
+                StaticSetup1Text.fontSize = 30;
+                StaticSetup2Text.fontSize = 30;
+            }else if(Screen.width > 800){
+                textList[i].fontSize = 20;
+                StableText.fontSize = 20;
+                TagnameText.fontSize = 20;
+                ConDGXText.fontSize = 20;
+                StaticSetup1Text.fontSize = 20;
+                StaticSetup2Text.fontSize = 20;
+            }else{
+                //placholder
+            }
+        }
+        if(Screen.width > 2400){
+                //placholder
+            }else if(Screen.width > 1200){
+                UpdatePosition(StaDG1tmp, new Vector3(220, 125, 0)); 
+                UpdatePosition(TagDGXtmp, new Vector3(0, 280, 0));
+                UpdatePosition(ConDGXtmp, new Vector3(0, -280, 0));
+                UpdatePosition(UDGXtmp, new Vector3(-147, 170, 0));
+                UpdatePosition(PDGXtmp, new Vector3(-147, 125, 0));
+                UpdatePosition(QDGXtmp, new Vector3(-147, 80, 0));
+                UpdatePosition(FDGXtmp, new Vector3(-147, 35, 0));
+                UpdatePosition(VelDGXtmp, new Vector3(220, 170, 0));
+                UpdatePosition(IDGXtmpL1, new Vector3(-147, -10, 0));
+                UpdatePosition(IDGXtmpL2, new Vector3(-147, -55, 0));
+                UpdatePosition(IDGXtmpL3, new Vector3(-147, -100, 0));
+                UpdatePosition(SdhDGXtmp, new Vector3(220, 80, 0)); 
+                UpdatePosition(RunDGXtmp, new Vector3(0, -240, 0));
+                UpdatePosition(RevDGXtmp, new Vector3(220, 35, 0));
+                UpdatePosition(StaticSetup1tmp, new Vector3(-65, -8, 0)); 
+                UpdatePosition(StaticSetup2tmp, new Vector3(-170, 51, 0));
+            }else if(Screen.width > 800){
+                UpdatePosition(StaDG1tmp, new Vector3(170, 70, 0)); 
+                UpdatePosition(TagDGXtmp, new Vector3(0, 170, 0));
+                UpdatePosition(ConDGXtmp, new Vector3(0, -160, 0));
+                UpdatePosition(UDGXtmp, new Vector3(-74, 100, 0));
+                UpdatePosition(PDGXtmp, new Vector3(-74, 70, 0));
+                UpdatePosition(QDGXtmp, new Vector3(-74, 40, 0));
+                UpdatePosition(FDGXtmp, new Vector3(-74, 10, 0));
+                UpdatePosition(VelDGXtmp, new Vector3(170, 100, 0));
+                UpdatePosition(IDGXtmpL1, new Vector3(-74, -20, 0));
+                UpdatePosition(IDGXtmpL2, new Vector3(-74, -50, 0));
+                UpdatePosition(IDGXtmpL3, new Vector3(-74, -80, 0));
+                UpdatePosition(SdhDGXtmp, new Vector3(170, 40, 0)); 
+                UpdatePosition(RunDGXtmp, new Vector3(0, -130, 0)); 
+                UpdatePosition(RevDGXtmp, new Vector3(170, 10, 0));
+                UpdatePosition(StaticSetup1tmp, new Vector3(23, -77, 0)); 
+                UpdatePosition(StaticSetup2tmp, new Vector3(-180, 51, 0));
+            }else{
+                //placholder
+            }                                          
         Debug.Log("Operation Complete");
     }
     private string GetMeasurementFromDatabase(string system){                                                   //func som henter all måling
@@ -145,5 +196,9 @@ public class LiveDataValues : MonoBehaviour
     private string GetMeasurementByIndex(string measurements,int index){        //finner målingen vi ønsker
         string[] parts = measurements.Split(',');                               
         return parts[index];                                                    
+    }
+    private void UpdatePosition(GameObject obj, Vector3 offset){
+        RectTransform rectTransform = obj.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition3D = offset;
     }
 }

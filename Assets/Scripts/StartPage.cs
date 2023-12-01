@@ -55,7 +55,7 @@ public class StartPage : MonoBehaviour
         StartList.Add(StartSimButtonText); StartList.Add(StartOptionsButtonText); StartList.Add(StartInfoButtonText); StartList.Add(StartExitButtonText);
 
         UpdateSettingsStart();
-        UpdateScalingStart(StartSimButton, new Vector3(-Screen.width / 7f, Screen.height/4f, 0));
+        UpdateScalingStart(StartSimButton, new Vector3(-Screen.width / 7f, Screen.height/4f, 0));           //posisjonerer knapper
         UpdateScalingStart(StartOptionsButton, new Vector3(-Screen.width / 7f, Screen.height/8f, 0));
         UpdateScalingStart(StartInfoButton, new Vector3(-Screen.width / 7f, 0, 0));
         UpdateScalingStart(StartExitButton, new Vector3(-Screen.width / 7f, -Screen.height/8f, 0));
@@ -70,7 +70,7 @@ public class StartPage : MonoBehaviour
         SettingsStateController.ExtrasSettingController = ExtrasActive;
         SceneManager.LoadScene("Playground");
     }
-    public void OptionsSim(){
+    public void OptionsSim(){                       //velger skjerm
         StartScreen.SetActive(false);
         OptionsScreen.SetActive(true);
         InfoScreen.SetActive(false);
@@ -86,10 +86,10 @@ public class StartPage : MonoBehaviour
         OptionsScreen.SetActive(false);
     }
     public void ExitSim(){
-        Debug.Log("supposed to exit game");
+        Debug.Log("supposed to exit game");           //placeholder
     }
 
-    public void DataBladSetting(){
+    public void DataBladSetting(){                  //finner riktige innstillinger
         if(DataBladActive == false){
             DataBladActive = true;
             DataBladText.text = "On";
@@ -126,7 +126,7 @@ public class StartPage : MonoBehaviour
         }
     }
 
-    void UpdateSettingsStart(){
+    void UpdateSettingsStart(){                         //oppdaterer riktig innstilling
         if(DataBladActive == true){
             DataBladText.text = "On";
         } else {
@@ -148,9 +148,9 @@ public class StartPage : MonoBehaviour
             LiveDataText.text = "Off";
         }
     }
-    void UpdateScalingStart(GameObject obj, Vector3 offset)
+    void UpdateScalingStart(GameObject obj, Vector3 offset)                     //skalerer knapper
     {
-        RectTransform rectTransform = obj.GetComponent<RectTransform>();
+        RectTransform rectTransform = obj.GetComponent<RectTransform>();        
         rectTransform.anchoredPosition3D = offset;
         Debug.Log(Screen.width);
         if(Screen.width > 2400){

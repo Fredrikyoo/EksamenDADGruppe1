@@ -15,7 +15,7 @@ public class PopupDatablad : MonoBehaviour
         LiveData.SetActive(false);
     }
     void OnTriggerEnter(Collider other){
-        bool PopupAllowed = GameManagement.GetComponent<GameManager>().Popups;
+        bool PopupAllowed = GameManagement.GetComponent<GameManager>().Popups;          //henter fram gamemanager
         bool LiveDataAllowed = GameManagement.GetComponent<GameManager>().LiveDatas;
         if(gameObject.name == "DG1" || gameObject.name == "DG2"){
             if(PopupAllowed == true && LiveDataAllowed == true){
@@ -23,7 +23,7 @@ public class PopupDatablad : MonoBehaviour
             LiveData.SetActive(true);
             Popup.SetActive(true);
 
-            MoveObject(Popup, new Vector3(Screen.width / 4f, 0, 0));
+            MoveObject(Popup, new Vector3(Screen.width / 4f, 0, 0));            //plaserer popup
             MoveObject(LiveData, new Vector3(-Screen.width / 4f, 0, 0));
             } 
             if(PopupAllowed == false && LiveDataAllowed == true){
@@ -41,9 +41,9 @@ public class PopupDatablad : MonoBehaviour
             }
         }
          
-    }
+    }       
     void OnTriggerExit(Collider other){
-        bool CrossHairTempReturn = GameManagement.GetComponent<GameManager>().CrossHair;
+        bool CrossHairTempReturn = GameManagement.GetComponent<GameManager>().CrossHair;    //returnerer tilbake til standar
         if (CrossHairTempReturn == true){
             CrossHairTempRemove.SetActive(true);
         } else {
@@ -60,7 +60,7 @@ public class PopupDatablad : MonoBehaviour
         rectTransform.anchoredPosition3D = offset;
         Debug.Log(Screen.width);
         if(Screen.width > 2400){
-            rectTransform.sizeDelta = new Vector2(1000, 1000);
+            rectTransform.sizeDelta = new Vector2(1000, 1000);              //Velger str
         }else if(Screen.width > 1200){
             rectTransform.sizeDelta = new Vector2(600, 600);
         }else if(Screen.width > 800){
