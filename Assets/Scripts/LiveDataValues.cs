@@ -116,7 +116,6 @@ public class LiveDataValues : MonoBehaviour
             } else {
                 SdhDGXText.text = "Off";
             }
-            textList[RealDG1.Length-1].text = "";
             StableText.text = "Stable"; //Extension -> AH AHH AL og ALL signaler eksiterer ikke enda
             TagnameText.text = "Tagname: " + gameObject.name;
             ConDGXText.text = "Connected to database";
